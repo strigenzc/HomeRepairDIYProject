@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Fix</title>
+  <meta name="description" content="Snap a photo of a home problem, get a likely cause and a step-by-step fix.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <a class="back-link" href="https://cstrigenzcrm.netlify.app/">&larr; Command Center</a>
+      <h1>Home Fix</h1>
+      <p class="sub">Snap the problem. Get the likely cause, the fix, and an honest call on when to bring in a pro.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="diagnose" role="tab" aria-selected="true">Diagnose</button>
+      <button class="tab" data-tab="fixes" role="tab" aria-selected="false">My fixes <span id="fix-count" class="count"></span></button>
+    </nav>
+
+    <!-- DIAGNOSE -->
+    <section id="panel-diagnose" class="panel">
+      <form id="diag-form" class="card form-card" novalidate>
+        <label class="drop" id="drop">
+          <input type="file" id="photo" accept="image/*" capture="environment" hidden>
+          <img id="photo-preview" alt="" hidden>
+          <span class="drop-hint" id="drop-hint">
+            <span class="drop-icon" aria-hidden="true">&#128247;</span>
+            <strong>Add a photo</strong>
+            <small>Tap to take one or choose from your library. You can also drag one here.</small>
+          </span>
+        </label>
+        <button type="button" id="photo-clear" class="link-btn" hidden>Remove photo</button>
+
+        <label class="field">
+          <span>What's going on?</span>
+          <textarea id="desc" rows="3" maxlength="1500" placeholder="e.g. Brown stain spreading on the bathroom ceiling, right under the upstairs tub. Started last week."></textarea>
+        </label>
+
+        <div class="row">
+          <label class="field">
+            <span>Room / area</span>
+            <select id="room">
+              <option value="">Choose…</option>
+              <option>Kitchen</option><option>Bathroom</option><option>Bedroom</option>
+              <option>Living room</option><option>Basement</option><option>Garage</option>
+              <option>Laundry</option><option>Exterior</option><option>Yard / garden</option>
+              <option>Attic</option><option>Other</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Home built (optional)</span>
+            <input id="home-age" type="text" maxlength="40" placeholder="e.g. 1928">
+          </label>
+        </div>
+
+        <button type="submit" id="diag-btn" class="btn primary">Diagnose</button>
+        <p id="diag-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div id="result"></div>
+    </section>
+
+    <!-- FIXES -->
+    <section id="panel-fixes" class="panel" hidden>
+      <div class="fix-filters">
+        <select id="fix-filter" aria-label="Filter fixes">
+          <option value="active">Open + in progress</option>
+          <option value="all">All</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+      <div id="fix-list"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    AI suggestions can be wrong. When in doubt, especially with gas, electrical, structural or water damage, call a licensed pro.
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
